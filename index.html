@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do list</title>
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+<div>
+  <div class="container">
+    <div class="song-title">
+      <h2>Song Name </h2>
+      <h4>artist name </h4>
+    </div>
+    <div class="image">
+      <img src="./image/img1.jpg" alt="">
+    </div>
+    <audio></audio>
+    <!-- Progress Bar -->
+<div class="progress-container">
+  <input type="range" id="progress" value="0" step="1">
+</div>
+
+   <div class="controls">
+  <i class="fa-solid fa-backward" id="Previous" title="Previous"></i>  <!-- Previous -->
+  <i class="fa-solid fa-play" id="play" title="play"></i>      <!-- Play -->
+  <i class="fa-solid fa-forward" id="Next" title="Next"></i>   <!-- Next -->
+</div>
+  </div>
+</div>
+<script>
+  const music = document.querySelector("audio");
+  const play = document.getElementById("play");
+  const next = document.getElementById("Next");
+  const prev = document.getElementById("Previous");
+  const songTitle = document.querySelector(".song-title h2");
+  const artistName = document.querySelector(".song-title h4");
+  const coverImage = document.querySelector(".image img");
+  const progress = document.getElementById("progress");
+
+  const playlist = [
+    {
+      title: "Laal Pari..",
+      artist: "Simar Kaur,Honey Singh",
+      src: "./songs/song1.mpeg",
+      img: "./image/img1.jpg"
+    },
+    {
+      title: "Kesariya",
+      artist: "Arijit Singh",
+      src: "./songs/song2.mpeg",
+      img: "./image/img2.jpg"
+    },
+    {
+      title: "Channa Mereya",
+      artist: "Arijit Singh",
+      src: "./songs/song3.mpeg",
+      img: "./image/img3.jpg"
+    },
+     {
+      title: "Awara Saam hai ",
+      artist: "Piyush Mehroliya",
+      src: "./songs/song4.mpeg",
+      img: "./image/img4.jpg"
+    }
+  ];
+
+  let currentTrack = 0;
+
+  function loadSong(index) {
+    const song = playlist[index];
+    music.src = song.src;
+    songTitle.textContent = song.title;
+    artistName.textContent = song.artist;
+    coverImage.src = song.img;
+    music.play();
+    play.classList.replace('fa-play', 'fa-pause');
+  }
+
+  play.addEventListener('click', () => {
+    if (music.paused) {
+      music.play();
+      play.classList.replace('fa-play', 'fa-pause');
+    } else {
+      music.pause();
+      play.classList.replace('fa-pause', 'fa-play');
+    }
+  });
+
+  next.addEventListener('click', () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    loadSong(currentTrack);
+  });
+
+  prev.addEventListener('click', () => {
+    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+    loadSong(currentTrack);
+  });
+
+  music.addEventListener('ended', () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    loadSong(currentTrack);
+  });
+
+  // Update progress bar as song plays
+  music.addEventListener('timeupdate', () => {
+    progress.max = music.duration;
+    progress.value = music.currentTime;
+  });
+
+  // Seek when user changes progress bar
+  progress.addEventListener('input', () => {
+    music.currentTime = progress.value;
+  });
+
+  // Initial load
+  loadSong(currentTrack);
+</script>
+
+
+</script>
+</body>
+</html>
+

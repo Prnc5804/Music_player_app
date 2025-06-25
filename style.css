@@ -1,0 +1,83 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+ 
+  background-image: url('./image/background2.jpg');
+  background-size: cover;        /* Make it fill the screen */
+  background-position: center;   /* Center the image */
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container{
+  color: white;
+  border-radius: 5px;
+  width: 280px;
+  height: 380px;
+  background:rgba(49, 6, 57, 0.817);
+  box-shadow: 0 0 15px rgba(240, 234, 234, 0.938);
+  border: 2px solid rgb(245, 243, 245);
+}
+.song-title h2,.song-title h4{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:50px;
+ 
+}
+.image img{
+ width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Makes it a perfect circle */
+  object-fit: cover; 
+  justify-content: center;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* space between icons */
+  margin-top: 20px;
+}
+
+.controls i {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.controls i:hover {
+  transform: scale(1.2);
+  color: #555;
+}
+.progress-container {
+  width: 100%;
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+} 
+.progress-container {
+  width: 100%;
+  margin: 10px 0;
+}
+
+#progress {
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+
+
